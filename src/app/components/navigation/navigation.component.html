@@ -1,0 +1,84 @@
+<div class="flex pt-20 justify-between items-center">
+  <!-- Logo  -->
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="icon icon-tabler icon-tabler-book stroke-slate-400"
+    width="40"
+    height="40"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="#2c3e50"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+    <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" />
+    <line x1="3" y1="6" x2="3" y2="19" />
+    <line x1="12" y1="6" x2="12" y2="19" />
+    <line x1="21" y1="6" x2="21" y2="19" />
+  </svg>
+  <div class="flex gap-8 items-center relative">
+    <!-- Font Swicher -->
+    <div class="flex items-center cursor-pointer" (click)="toggleList()">
+      <p class="font-bold">{{ font }}</p>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-chevron-down stroke-cyan-700"
+        width="33"
+        height="33"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="#2c3e50"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <polyline *ngIf="!listFontsShowed" points="6 9 12 15 18 9" />
+        <polyline *ngIf="listFontsShowed" points="6 15 12 9 18 15" />
+      </svg>
+    </div>
+    <div
+      class="absolute top-10 p-6 rounded-md shadow-2xl shadow-cyan-500/70 dark:bg-slate-900 bg-white z-30"
+      [ngClass]="{ hidden: !listFontsShowed }"
+    >
+      <div class="" *ngFor="let font of fonts">
+        <div
+          class="w-32 text-lg cursor-pointer hover:text-cyan-500 transition delay-100 duration-200 ease-in-out"
+        >
+          <p
+            [ngClass]="{
+              'font-mono': font == 'Mono',
+              'font-sans': font == 'Sans Serif',
+              'font-serif': font == 'Serif',
+              'font-roboto': font == 'Roboto'
+            }"
+            (click)="fontSeleted($event)"
+          >
+            {{ font }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Mode Swicher -->
+
+    <label
+      for="toggle-example"
+      class="flex items-center cursor-pointer relative"
+    >
+      <input
+        type="checkbox"
+        id="toggle-example"
+        class="sr-only"
+        [(ngModel)]="checkbox"
+        (change)="cheackBoxStatus($event)"
+      />
+      <div
+        class="toggle-bg bg-gray-200 border-2 border-gray-200 h-6 w-11 rounded-full"
+      ></div>
+      <span class="ml-3 text-sm font-medium">{{ status }} mode</span>
+    </label>
+  </div>
+</div>

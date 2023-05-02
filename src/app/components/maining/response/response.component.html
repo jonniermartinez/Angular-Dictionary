@@ -1,0 +1,78 @@
+<div class="flex justify-between items-center">
+  <div class="text-left">
+    <h3 class="text-7xl font-bold mb-8">{{ word }}</h3>
+    <span class="text-2xl text-cyan-600">{{ phonetic }}</span>
+  </div>
+
+  <div
+    class="inline-block p-5 bg-cyan-700/30 hover:bg-cyan-600 rounded-full hover:fill-white fill-cyan-950"
+    (click)="play()"
+  >
+    <audio src="{{ audio }}" #audioElement></audio>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="icon icon-tabler icon-tabler-player-play stroke-cyan-600/80 fill-inherit"
+      width="44"
+      height="44"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="#2c3e50"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M7 4v16l13 -8z" />
+    </svg>
+  </div>
+</div>
+
+<div *ngFor="let item of meanings" class="">
+  <div>
+    <div class="relative flex items-center mt-3">
+      <span class="flex-shrink mr-4 text-2xl font-semibold">{{
+        item.partOfSpeech
+      }}</span>
+      <div class="flex-grow border-t border-gray-400/50"></div>
+    </div>
+
+    <div class="text-left pb-12 mt-3">
+      <p class="text-2xl font-semibold mb-6">Meaning</p>
+      <ul *ngFor="let definition of item.definitions">
+        <li class="text-xl list-disc list-inside text-cyan-700">
+          <span class="dark:text-white">{{ definition.definition }}</span>
+        </li>
+      </ul>
+      <div *ngIf="item.synonyms != ''">
+        <p class="text-xl font-semibold mt-3">
+          Synonyms
+          <span class="text-cyan-600" *ngFor="let synonym of item.synonyms"
+            >{{ synonym }} ,
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flex-grow border-t border-gray-400/50"></div>
+<div class="text-left pb-20 pt-6">
+  <p class="text-2xl font-semibold">Source</p>
+  <a href="{{ sourceUrls }}" target="_blank"
+    >{{ sourceUrls }}
+    <svg
+      class="icon icon-tabler icon-tabler-external-link w-5 h-5 inline-block"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="#2c3e50"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M11 7h-5a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-5" />
+      <line x1="10" y1="14" x2="20" y2="4" />
+      <polyline points="15 4 20 4 20 9" />
+    </svg>
+  </a>
+</div>

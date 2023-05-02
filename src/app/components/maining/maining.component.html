@@ -1,0 +1,27 @@
+<!-- Muestra el loader si la variable de carga es verdadera -->
+<div class="mt-10">
+  <div *ngIf="loading">
+    <app-loader></app-loader>
+    <!-- Puedes usar aquí algún tipo de spinner o indicador visual de carga -->
+  </div>
+  <div *ngIf="!loading && error && word != ''">
+    <!-- Aquí muestras los datos obtenidos del observable -->
+    <app-error></app-error>
+  </div>
+  <div *ngIf="word == '' && !loading" class="text-5xl font-black">
+    <h1
+      class="animate-text delay-75 duration-75 bg-gradient-to-r from-cyan-700 via-purple-500 to-orange-500 bg-clip-text text-transparent"
+    >
+      <span class="dark:text-white text-gray-800">Discover the</span>
+      Meaning of Any Word!
+      <span class="dark:text-white text-gray-800">Search Now!</span>
+    </h1>
+  </div>
+
+  <!-- Muestra los datos si la variable de carga es falsa -->
+  <!-- -->
+  <div *ngIf="!loading && !error && data.length > 0">
+    <!-- Aquí muestras los datos obtenidos del observable -->
+    <app-response [data]="data"></app-response>
+  </div>
+</div>
